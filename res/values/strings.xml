@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="main_title">センサーのデモアプリ</string>
+    <string name="app_name">DemoSensor</string>
+    <string name="accelerometer_button_name">加速度デモ</string>
+    <string name="gyroscope_button_name">角速度デモ</string>
+    <string name="light_button_name">輝度デモ</string>
+    <string name="magnetic_button_name">磁界デモ</string>
+    <string name="orientation_button_name">傾きデモ</string>
+    <string name="pressure_button_name">圧力デモ</string>
+    <string name="proximity_button_name">近接デモ</string>
+    <string name="temperature_button_name">温度デモ</string>
+    <string name="accelerometer_activity_title">加速デモ_アプリ</string>
+</resources>
