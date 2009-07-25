@@ -18,10 +18,13 @@ import android.view.View;
 public class AccelerometerView extends View {
 	private static final String TAG = "AccelerometerView";
 	private static final int FONT_SIZE = 20;
+	private static final String REAL_NAME = "実加速度";
+	private static final String SET_NAME = "設定加速度";
 	private static final String[] PAINT_STRING = {"X：", "Y：", "Z："};
 	private Bitmap bitmap;
-	private static int x, y;
-	private static String[] accelerometerString = new String[3];
+	private static float x, y;
+	private static String[] realAccelerometerString = new String[3];
+	private static String[] setAccelerometerString = new String[3];
 
 	public AccelerometerView(Context context) {
 		super(context);
@@ -31,8 +34,11 @@ public class AccelerometerView extends View {
 		bitmap = BitmapFactory.decodeResource(resources, R.drawable.demo);
 		x = 110;
 		y = 160;
-		for (int i = 0; i < accelerometerString.length; i++) {
-			accelerometerString[i] = PAINT_STRING[i] + 0;
+		for (int i = 0; i < realAccelerometerString.length; i++) {
+			realAccelerometerString[i] = PAINT_STRING[i] + 0;
+		}
+		for (int i = 0; i < setAccelerometerString.length; i++) {
+			setAccelerometerString[i] = PAINT_STRING[i] + 0;
 		}
 	}
 
@@ -52,23 +58,35 @@ public class AccelerometerView extends View {
 		paint.setColor(getResources().getColor(R.color.accelerometer));
 		paint.setTextSize(FONT_SIZE);
 		paint.setStyle(Style.FILL);
-		for (int i = 0; i < accelerometerString.length; i++) {
-			canvas.drawText(accelerometerString[i], 0, FONT_SIZE * (i + 1), paint);
+		canvas.drawText(REAL_NAME, 0, FONT_SIZE, paint);
+		for (int i = 0; i < realAccelerometerString.length; i++) {
+			canvas.drawText(realAccelerometerString[i], 0, FONT_SIZE * (i + 2), paint);
+		}
+		canvas.drawText(SET_NAME, 0, FONT_SIZE * 6, paint);
+		for (int i = 0; i < setAccelerometerString.length; i++) {
+			canvas.drawText(setAccelerometerString[i], 0, FONT_SIZE * (i + 7), paint);
 		}
 	}
 	
 	public void setAccelerometerValues(float[] values) {
 		Log.d(TAG, "setAccelerometerValues");
 
-		for (int i = 0; i < accelerometerString.length; i++) {
-			accelerometerString[i] = PAINT_STRING[i] + values[i];
+		for (int i = 0; i < realAccelerometerString.length; i++) {
+			realAccelerometerString[i] = PAINT_STRING[i] + values[i];
+		}
+		for (int i = 0; i < setAccelerometerString.length; i++) {
+			setAccelerometerString[i] = PAINT_STRING[i] + filter(values[i]);
 		}
 	}
 	
 	public void setBitmapMove(float[] values) {
 		Log.d(TAG, "setBitmapMove");
 
-		x -= values[0];
-		y += values[1];
+		x -= filter(values[0]);
+		y += filter(values[1]);
+	}
+	
+	private int filter(float f) {
+		return (int)f;
 	}
 }
