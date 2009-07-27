@@ -1,0 +1,9 @@
+<resources>
+	<integer name="accelerometer_mode">1</integer>
+	<integer name="gyroscope_mode">2</integer>
+	<integer name="light_mode">3</integer>
+	<integer name="magnetic_mode">4</integer>
+	<integer name="orientation_mode">5</integer>
+	<integer name="proximity_mode">6</integer>
+	<integer name="temperature_mode">7</integer>
+</resources>
