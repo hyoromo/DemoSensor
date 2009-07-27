@@ -10,5 +10,5 @@
     <string name="pressure_button_name">圧力デモ</string>
     <string name="proximity_button_name">近接デモ</string>
     <string name="temperature_button_name">温度デモ</string>
-    <string name="accelerometer_activity_title">加速デモ_アプリ</string>
+    <string name="sensor_activity_title">DemoSensorApp</string>
 </resources>

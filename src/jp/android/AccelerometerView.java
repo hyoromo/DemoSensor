@@ -28,12 +28,9 @@ public class AccelerometerView extends View {
 
 	public AccelerometerView(Context context) {
 		super(context);
-		Log.d(TAG, "AccelerometerView");
-		
+		Log.d(TAG, "AccelerometerView");	
 		Resources resources = getResources();
 		bitmap = BitmapFactory.decodeResource(resources, R.drawable.demo);
-		x = 110;
-		y = 160;
 		for (int i = 0; i < realAccelerometerString.length; i++) {
 			realAccelerometerString[i] = PAINT_STRING[i] + 0;
 		}
@@ -44,12 +41,14 @@ public class AccelerometerView extends View {
 
 	@Override
 	public void onDraw(Canvas canvas) {
-		Log.d(TAG, "onDraw");
-		
+		Log.d(TAG, "onDraw");		
 		// 背景を描画する
 		Paint background = new Paint();
 		background.setColor(getResources().getColor(R.color.background));
 		canvas.drawRect(0, 0, getWidth(), getHeight(), background);
+		// デモ画像を描画する
+		if (x <= -1.0f) x = (this.getWidth() / 2) - (bitmap.getWidth() / 2);
+		if (y <= -1.0f) y = (this.getHeight() / 2) - (bitmap.getHeight() / 2);
 		// デモ画像を描画する
 		canvas.drawBitmap(bitmap, x, y, null);
 		// 加速度を表示
@@ -70,7 +69,6 @@ public class AccelerometerView extends View {
 	
 	public void setAccelerometerValues(float[] values) {
 		Log.d(TAG, "setAccelerometerValues");
-
 		for (int i = 0; i < realAccelerometerString.length; i++) {
 			realAccelerometerString[i] = PAINT_STRING[i] + values[i];
 		}
@@ -81,12 +79,27 @@ public class AccelerometerView extends View {
 	
 	public void setBitmapMove(float[] values) {
 		Log.d(TAG, "setBitmapMove");
-
 		x -= filter(values[0]);
 		y += filter(values[1]);
 	}
 	
 	private int filter(float f) {
 		return (int)f;
+	}
+	
+	public float getAccelerometerX() {
+		return x;
+	}
+
+	public float getAccelerometerY() {
+		return y;
+	}
+	
+	public void setAccelerometerX(float tX) {
+		x = filter(tX);
+	}
+
+	public void setAccelerometerY(float tY) {
+		y = filter(tY);
 	}
 }

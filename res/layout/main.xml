@@ -30,12 +30,14 @@
 				    android:text="@string/accelerometer_button_name"
 				    />
 			</TableRow>
+<!--
 			<TableRow>
 				<Button
 				    android:id="@+id/gyroscope_button_id"
 				    android:text="@string/gyroscope_button_name"
 				    />
 			</TableRow>
+-->
 			<TableRow>
 				<Button
 				    android:id="@+id/light_button_id"

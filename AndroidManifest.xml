@@ -12,8 +12,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AccelerometerActivity"
-        	android:label="@string/accelerometer_activity_title"
+        <activity android:name=".SensorActivity"
+        	android:label="@string/sensor_activity_title"
         	android:screenOrientation="portrait">
         </activity>
     </application>
