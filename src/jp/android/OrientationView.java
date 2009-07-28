@@ -18,6 +18,8 @@ import android.view.View;
 public class OrientationView extends View {
 	private static final String TAG = "OrientationView";
 	private static final int FONT_SIZE = 20;
+	private static final String REAL_NAME = "実傾き";
+	private static final String SET_NAME = "方角度";
 	private static final String[] PAINT_STRING = {"X：", "Y：", "Z："};
 	private Bitmap bitmap;
 	private static float x;
@@ -46,9 +48,14 @@ public class OrientationView extends View {
 		paint.setColor(getResources().getColor(R.color.accelerometer));
 		paint.setTextSize(FONT_SIZE);
 		paint.setStyle(Style.FILL);
+		canvas.drawText(REAL_NAME, 0, FONT_SIZE, paint);
 		for (int i = 0; i < orientationString.length; i++) {
-			canvas.drawText(orientationString[i], 0, FONT_SIZE * (i + 1), paint);
+			canvas.drawText(orientationString[i], 0, FONT_SIZE * (i + 2), paint);
 		}
+		canvas.drawText(SET_NAME, 0, FONT_SIZE * 6, paint);
+		String str = "" + x;
+		canvas.drawText(str, 0, FONT_SIZE * 7, paint);
+		
 		// デモ画像を描画する
 		int pointX = (this.getWidth() / 2) - (bitmap.getWidth() / 2);
 		int pointY = (this.getHeight() / 2) - (bitmap.getHeight() / 2);
